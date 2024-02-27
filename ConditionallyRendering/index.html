@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js" defer></script>
+<script src="app.js" defer></script>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="./Montserrat-Regular.ttf">
+</head>
+<body>
+    <div id="app">
+        <h1>Vue Course Goal</h1>
+        <section>
+            <h2>My course Goal</h2>
+            <input type="text" v-model="enteredGoalValue">
+            <button @click="addGoal">ADD A GOAL</button>
+            <p v-if="goals.length===0">There no goals</p>
+            <ul v-else>
+                <li v-for="(goal,index) in goals" :key="goal" @click="removeGoal(index)">
+                    {{ goal }} - {{ index }}
+                    <input type="text" @click.stop>
+                </li>
+                <!-- <li v-for="(goal,index) in goals" :key="index" @click="removeGoal(index)">
+                    {{ goal }} - {{ index }}
+                    <input type="text" @click.stop>
+                </li> -->
+                            
+            </ul>
+            <!-- <p v-show="goals.length===0">There no goals</p>
+            <ul v-show="goals.length > 0">
+                <li>Goal</li>
+            </ul> -->
+
+            <ul>
+                <li v-for="(value,key,index) in {name:'Max',age:31}">{{ key }}: {{ value }}</li>
+            </ul>
+
+            <!-- <ul>
+                <li v-for="num in 10">{{ num }}</li>
+            </ul> -->
+        </section>
+    </div>
+</body>
+</html>

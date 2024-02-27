@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./Montserrat-Regular.ttf">
+    <style>
+        .demo{
+            border: 5px dotted black;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            width: 10rem;
+            height: 10rem;
+        }
+
+        .active{
+            border-color: red;
+            background-color: salmon;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>
+            Vue Dynamic Styling
+        </h1>
+        <section>
+            <!-- <div class="demo" :style="{'borderColor': boxASelected ? 'red' : 'black'}" @click="boxSelected('A')"></div> -->
+            <!-- <div class="demo" :class="boxASelected ? 'demo active' : 'demo'" @click="boxSelected('A')"></div>-->
+            <div :class=['demo',boxAClasses] @click="boxSelected('A')"></div>
+            <div class="demo" :class="{demo: true,active:boxBSelected}" @click="boxSelected('B')"></div>
+            <div class="demo" :class="{demo: true,active:boxCSelected}" @click="boxSelected('C')"></div>
+        </section>
+    </div>
+</body>
+</html>

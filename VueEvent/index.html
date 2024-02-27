@@ -1,0 +1,42 @@
+<!--
+ * @Author: ShawDe
+ * @Date: 2024-02-26 09:54:38
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./Montserrat-Regular.ttf">
+</head>
+<body>
+    <div id="app">
+        <h1>Vue Events</h1>
+        <section>
+            <h2>Event in Action</h2>
+            <button v-on:click="counter=counter+10">ADD</button>
+            <button @click="reduce(5)">Substract</button>
+            <p v-once>Starting Counter: {{ counter }}</p>
+            <p>Result:  {{ counter }}</p>
+            <!-- <input 
+            type="text" v-bind:value="name" 
+            v-on:input="setName($event,'shaw')" 
+            v-on:keyup.enter="confirmedInput()"> -->
+            <input type="text" v-model="name">
+            <button v-on:click="resetInput">Reset Input</button>
+            <p>Your name: {{ confirmedName }}</p>
+            <form v-on:submit.prevent="submitForm">
+                <input type="text">
+                <button>Sign UP</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

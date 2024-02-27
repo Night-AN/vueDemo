@@ -1,0 +1,39 @@
+<!--
+ * @Author: ShawDe
+ * @Date: 2024-02-25 19:24:04
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./Montserrat-Regular.ttf">
+</head>
+
+<body>
+    <div id="app">
+        <h1>Vue Course Goal</h1>
+        <section>
+            <h2>
+                My Course Goal
+            </h2>
+            <p>
+                {{ OurGoal() }}
+            </p>
+            <p v-html="courseGoalB"></p>
+            <p>
+                Learn more <a v-bind:href="vueLink">About vue</a>
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>
