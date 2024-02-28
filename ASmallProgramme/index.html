@@ -55,7 +55,7 @@
         <section id="gameStatus" v-if="winner != null">
             <h1 v-if="winner === 'monster'">Wasted</h1>
             <h1 v-else-if="winner === 'player'">You won</h1>
-            <h1 v-else="winner === 'draw'">draw</h1>
+            <h1 v-else="winner === 'draw'">Draw</h1>
             <button @click="restartGame">RestartGame</button>
         </section>
 
