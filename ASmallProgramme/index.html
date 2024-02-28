@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASmallProgramme</title>
+
+    <script src="https://unpkg.com/vue@3.4.19/dist/vue.global.js" defer></script>
+    <script src="app.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GLOBAL CONFIGURATION -->
+    <style>
+        @font-face {
+            font-family: "Montserrat";
+            src: url("../assests/Montserrat-Regular.ttf");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Montserrat;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <header>
+        <h1>Monster Game</h1>
+    </header>
+    <main id="app">
+        <section class="Health">
+            <p>Player Health</p>
+            <div class="healthBarBorder">
+                <div id="playerHealth" :style="playerHealthBar"></div>
+            </div>
+        </section>
+
+        <section class="Health">
+            <p>Monster Health</p>
+            <div class="healthBarBorder">
+                <div id="monsterHealth" :style="monsterHealthBar"></div>
+            </div>
+        </section>
+
+        <div id="buttonGroup" v-if="winner == null">
+            <button @click="attackMonster">Attack</button>
+            <button @click="specialAttack">Special Attack</button>
+            <button @click="healPlayer">Heal</button>
+            <button @click="surround">Surrounder</button>
+        </div>
+        <section id="gameStatus" v-if="winner != null">
+            <h1 v-if="winner === 'monster'">Wasted</h1>
+            <h1 v-else-if="winner === 'player'">You won</h1>
+            <h1 v-else="winner === 'draw'">draw</h1>
+            <button @click="restartGame">RestartGame</button>
+        </section>
+
+
+        <section id="BattleLog">
+            <h1>BattleLog</h1>
+        </section>
+    </main>
+    <footer>
+        <p>SourceCode <br>
+            <a href="https://github.com/Night-AN/vueDemo" target="_blank">Github</a> <br>
+            <a href="https://gitee.com/2754781659/vueDemo" target="_blank">Gitee</a>
+        </p>
+        <p>&copy; Shaw Yu</p>
+    </footer>
+</body>
+
+</html>
