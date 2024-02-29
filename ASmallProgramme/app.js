@@ -10,6 +10,9 @@ const app = Vue.createApp({
             playerHealth: 100,
             monsterHealth: 100,
             winner: null,
+            battleLogs:[],
+            currentRound:0,
+            specialAttackRound:0,
         };
     },
     watch: {
@@ -32,7 +35,7 @@ const app = Vue.createApp({
             {
                 this.winner = 'player'
             }
-        }
+        },
     },
     computed: {
         playerHealthBar()
@@ -46,28 +49,43 @@ const app = Vue.createApp({
             return {
                 width: this.monsterHealth + '%'
             };
+        },
+        mayUseSpecialAttack(){
+           if(this.currentRound - this.specialAttackRound > 3){
+            return false;
+           }else{
+            return true;
+           }
         }
     },
     methods: {
         attackMonster()
         {
+            this.currentRound++;
             const damageValue = RandomHealth(5, 12);
             this.monsterHealth -= damageValue;
             this.attackPlayer();
+            this.addBattleLog('player','attack',damageValue)
         },
         attackPlayer()
         {
             const damageValue = RandomHealth(8, 15);
             this.playerHealth -= damageValue;
+            this.addBattleLog('monster','attack',damageValue)
+
         },
         specialAttack()
         {
+            this.currentRound++;
+            this.specialAttackRound=this.currentRound;
             const damageValue = RandomHealth(10, 20);
             this.monsterHealth -= damageValue;
             this.attackPlayer();
+            this.addBattleLog('player','attack',damageValue)
         },
         healPlayer()
         {
+            this.currentRound++;
             const healValue = RandomHealth(10, 20);
             if (this.playerHealth + healValue > 100)
             {
@@ -77,6 +95,7 @@ const app = Vue.createApp({
                 this.playerHealth += healValue;
             }
             this.attackPlayer();
+            this.addBattleLog('player','heal',healValue);
         },
         surround()
         {
@@ -84,9 +103,19 @@ const app = Vue.createApp({
         },
         restartGame()
         {
+            this.currentRound=0;
+            this.specialAttackRound=0;
             this.winner = null;
             this.playerHealth = 100;
             this.monsterHealth = 100;
+        },
+        addBattleLog(who,what,value)
+        {
+            this.battleLogs.unshift({
+                actionBy : who,
+                actionName : what,
+                actionValue : value,
+            });
         }
     }
 });

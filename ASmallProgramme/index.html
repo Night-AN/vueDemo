@@ -48,7 +48,7 @@
 
         <div id="buttonGroup" v-if="winner == null">
             <button @click="attackMonster">Attack</button>
-            <button @click="specialAttack">Special Attack</button>
+            <button :disabled="mayUseSpecialAttack" @click="specialAttack">Special Attack</button>
             <button @click="healPlayer">Heal</button>
             <button @click="surround">Surrounder</button>
         </div>
@@ -62,7 +62,10 @@
 
         <section id="BattleLog">
             <h1>BattleLog</h1>
-        </section>
+            <p v-for="battleLog in battleLogs">
+                {{ battleLog.actionBy }} -- {{ battleLog.actionName }} -- {{ battleLog.actionValue }}
+            </p>
+        </section> 
     </main>
     <footer>
         <p>SourceCode <br>

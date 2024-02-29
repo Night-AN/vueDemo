@@ -123,3 +123,7 @@ a:visited {
     color: black;
     padding-bottom: 4dvh;
 }
+
+#BattleLog p:last-child{
+    margin-bottom: 2dvh;
+}
