@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Montserrat ;
+    src: url("../assests/Montserrat-Regular.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+}
 header {
     display: flex;
     flex-direction: column;
