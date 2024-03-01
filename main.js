@@ -1,21 +1,40 @@
-/*
- * @Author: ShawDe
- * @Date: 2024-02-25 19:23:41
- * @Description: 
- */
-const http = require('http');
-const fs = require("fs");
-
-const hostname = 'localhost';
+const { stat, readFile, readdir } = require('fs');
+const HTTP = require('http');
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
+
+const app = HTTP.createServer((req, res) =>
+{
+    const path = '.' + req.url;
+
+    stat(path, (err, stats) =>
+    {
+        if(err){
+            res.writeHead(500);
+        }
+        if (stats.isDirectory()===true)
+        {
+            readdir(path,(err,data)=>{
+                if(err){
+                    res.writeHead(500);
+                }
+                res.writeHead(200);
+                res.end(data.toString());
+            });
+        } else if (stats.isDirectory()===false)
+        {
+            readFile(path,(err,data)=>{
+                if(err){
+                    res.writeHead(500);
+                }
+                res.writeHead(200);
+                res.end(data);
+            })
+        }
+    });
 });
 
-server.listen(port, hostname, () => {
-
-  console.log(`Server running at http://${hostname}:${port}/`);
-
+app.listen(port, () =>
+{
+    console.log(`Server is running on localhost:${port}`)
 });
